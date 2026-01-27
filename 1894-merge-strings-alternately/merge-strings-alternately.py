@@ -3,7 +3,7 @@ class Solution:
         result = ""
         i = 0
         j = 0
-        while i < len(word1) or j < len(word2):
+        for _ in range(max(len(word1),len(word2))):
             if i < len(word1):
                 result += word1[i]
                 i += 1
