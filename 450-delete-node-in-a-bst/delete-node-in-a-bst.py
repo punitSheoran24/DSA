@@ -7,39 +7,21 @@
 
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
-        if root is None:
-            return None 
-        if root.val == key:
-            return self.helper(root)
-        
-        dummy = root
-        while root is not None:
-            if root.val > key:
-                if root.left is not None and root.left.val == key:
-                    root.left = self.helper(root.left)
-                    break
-                else:
-                    root = root.left
+        if not root:
+            return None
+        if key>root.val:
+            root.right = self.deleteNode(root.right,key)
+        elif key<root.val:
+            root.left = self.deleteNode(root.left,key)
+        else:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
             else:
-                if root.right is not None and root.right.val == key:
-                    root.right = self.helper(root.right)
-                    break
-                else:
-                    root = root.right
-        return dummy
-    
-    def helper(self, root):
-        if root.left is None:
-            return root.right
-        if root.right is None:
-            return root.left
-        
-        rightChild = root.right
-        lastRight = self.flr(root.left)  # rightmost node in left subtree
-        lastRight.right = rightChild
-        return root.left
-    
-    def flr(self, root):
-        if root.right is None:
-            return root
-        return self.flr(root.right)
+                cur=root.right
+                while cur.left:
+                    cur=cur.left
+                root.val=cur.val
+                root.right=self.deleteNode(root.right,root.val)
+        return root
