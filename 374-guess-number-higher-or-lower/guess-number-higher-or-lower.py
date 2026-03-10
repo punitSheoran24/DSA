@@ -7,19 +7,15 @@
 
 class Solution:
     def guessNumber(self, n: int) -> int:
-        start,end=1,n
-        if guess(end)==0:
-            return end
-        if guess(start)==0:
-            return start
-        while True:
+        start,end=0,n
+        
+        while start<=end:
             mid=(start+end)//2
-            print(mid)
             g=guess(mid)
             if g==1:
-                start=mid
+                start=mid+1
             elif g==-1:
-                end=mid
+                end=mid-1
             else:
                 return mid
         
