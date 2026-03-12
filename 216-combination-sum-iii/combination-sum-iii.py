@@ -4,7 +4,8 @@ class Solution:
 
         def backtracking(k, lst, i):
             if sum(lst) == n and k == 0:
-                res.append([x for x in lst])
+                # res.append([x for x in lst])
+                res.append(lst[:])
             if k == 0:
                 return
             for num in range(i + 1, 10):
