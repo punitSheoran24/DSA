@@ -14,11 +14,11 @@
 #         return res
 class Solution:
     def countBits(self, n: int) -> list[int]:
+        res = [0, 1]
         if n == 0:
             return [0]
         if n == 1:
-            return [0, 1]
-        res = [0, 1]
+            return res
         prev, cur = 0, 2
         for i in range(2, n + 1):
             binary = format(i, 'b')
