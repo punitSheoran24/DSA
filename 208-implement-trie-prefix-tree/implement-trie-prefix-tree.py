@@ -1,40 +1,33 @@
-class Node:
-    def __init__(self):
-        self.children={}
-        self.end=False
 
 class Trie:
-
     def __init__(self):
-        self.root=Node()
+        self.root={}
+
     def insert(self, word: str) -> None:
-        head=self.root
+        h=self.root
         for w in word:
-            if w not in head.children:
-                head.children[w]=Node()
-            head=head.children[w]
-        head.end=True
+            if w not in h:
+                h[w]={}
+            h=h[w]
+        h['.']='.'
         
 
     def search(self, word: str) -> bool:
-        head=self.root
+        h=self.root
         for w in word:
-            if w not in head.children:
+            if w not in h:
                 return False
-            head=head.children[w]
-        if not head.end:
+            h=h[w]
+        if '.' not in h:
             return False
         return True
 
-
-        
-
     def startsWith(self, prefix: str) -> bool:
-        head=self.root
+        h=self.root
         for w in prefix:
-            if w not in head.children:
+            if w not in h:
                 return False
-            head=head.children[w]
+            h=h[w]
         return True
 
 
