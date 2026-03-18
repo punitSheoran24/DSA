@@ -18,9 +18,7 @@ class Trie:
             if w not in h:
                 return False
             h=h[w]
-        if '.' not in h:
-            return False
-        return True
+        return '.' in h
 
     def startsWith(self, prefix: str) -> bool:
         h=self.root
