@@ -17,10 +17,11 @@ class Solution:
         res = 0
         l = r = 0
         while r < len(nums) - 1:
-            temp = r
+            temp = 0
             for i in range(l, r + 1):
-                r = max(r, i + nums[i])
-            l = temp + 1
+                temp = max(temp, i + nums[i])
+            l=r+1
+            r=temp
             res += 1
 
         return res
