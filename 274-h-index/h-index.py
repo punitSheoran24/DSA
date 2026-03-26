@@ -16,15 +16,10 @@ class Solution:
         res = [0] * (n + 1)
 
         for c in citations:
-            if c > n:
-                res[n] += 1
-            else:
-                res[c] += 1
-        h = 0
-        c = 0
-        for i in range(len(res) - 1, -1, -1):
-            c += res[i]
-            if c >= i and i > h:
-                h = i
-
+            res[min(n,c)]+=1
+        h = n
+        c = res[n]
+        while c<h:
+            h-=1
+            c += res[h]
         return h
